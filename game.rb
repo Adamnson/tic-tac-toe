@@ -11,6 +11,9 @@
      --  no: ask user to make a different choice
 =end
 
+#NOTE: index of arr = pos - 1
+
+
 def draw_grid(arr)
     arr.each_with_index do |i, id|
         print " #{i} "
@@ -20,5 +23,21 @@ def draw_grid(arr)
     puts "\n"
 end
 
-arr = [1, 'X', 0, 'X', 'X', 0, 6,7, 0]
+def check_validity(arr, pos)
+  if ( (arr[pos-1] != 'X') and (arr[pos-1] != 0) )
+    return true
+  end
+  false
+end
+
+arr = [1, 'X', 0, 'X', 'X', 0, 7,8, 0]
 draw_grid(arr)
+
+puts "Enter the position: "
+pos = gets.chomp.to_i
+
+p "you entered #{pos}"
+
+p check_validity(arr, pos)
+p check_validity(arr, 2)
+p check_validity(arr, 9)
