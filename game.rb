@@ -84,9 +84,7 @@ class Game
       if valid_pos?(pos)
         @arr[pos-1] = player.sign
       else
-        player.is_computer ? 
-         self.add_mark(player, player.choose_pos()) :  # not working
-         (puts "Position choice invalid")
+         puts "Position choice invalid"
       end
     end
 
@@ -117,7 +115,6 @@ dig20   = Game.new([1,2,0,4,0,6,0,8,9])
 
 player1 = Player.new("x")
 player2 = Player.new(0)
-computer.is_computer = true
 
 =begin
 
