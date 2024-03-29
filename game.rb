@@ -18,13 +18,17 @@
     -- add_mark
     -- won?
 
-
-    vanilla = [1, 2, 3, 
-               4, 5, 6, 
-               7, 8, 9]
-    
-    first_line = 
-
+  make a player class
+   - player gets to choose between "x" and 0
+     -- if player chooses x, display vanilla grid, ask for position
+        then computer makes a choice and passes back to player
+        repeat until winner emerges
+     -- if player chooses 0, computer makes a choice, display grid, 
+        ask for position
+        repeat until winner emerges
+   - after the game is over, ask if player wants to play again
+     -- yes: repeat
+     --  no: thank you for playing    
 
 =end
 
@@ -59,7 +63,7 @@ class Game
 
     def won?(sign)
       LINES.any? do |line| 
-      line.all? {|i| @arr[i-1] == sign}
+      line.all? {|pos| @arr[pos-1] == sign}
       end
     end 
 
@@ -73,7 +77,28 @@ class Game
 
 end
 
-# tests
+vanilla = Game.new([1,2,3,4,5,6,7,8,9])
+row1x   = Game.new(['X','X','X',4,5,6,7,8,9])
+row2x   = Game.new([1,2,3,'X','X','X',7,8,9])
+row3x   = Game.new([1,2,3,4,5,6,'X','X','X'])
+row10   = Game.new([0,0,0,4,5,6,7,8,9])
+row20   = Game.new([1,2,3,0,0,0,7,8,9])
+row30   = Game.new([1,2,3,4,5,6,0,0,0])
+col10   = Game.new([0,2,3,0,5,6,0,8,9])
+dig10   = Game.new([0,2,3,4,0,6,7,8,0])
+dig20   = Game.new([1,2,0,4,0,6,0,8,9])
+
+row10.draw_grid()
+puts "Enter the position: "
+pos = gets.chomp.to_i
+
+p "you entered #{pos}"
+row10.add_mark('X', pos)
+row10.draw_grid()
+
+
+=begin
+
 vanilla = Game.new([1,2,3,4,5,6,7,8,9])
 row1x   = Game.new(['X','X','X',4,5,6,7,8,9])
 row2x   = Game.new([1,2,3,'X','X','X',7,8,9])
@@ -87,22 +112,12 @@ dig20   = Game.new([1,2,0,4,0,6,0,8,9])
 
 games = [vanilla, row1x, row2x, row3x, row10, row20, row30, col10, dig10, dig20]
 
-# games.each do |game|
-#   puts "New game #{game}"
-#   game.draw_grid()
-#   # binding.pry
-#   p "X1: #{game.won?('X')}"
-#   p "o1: #{game.won?(0)}"
-# end
+games.each do |game|
+  puts "New game #{game}"
+  game.draw_grid()
+  # binding.pry
+  p "X1: #{game.won?('X')}"
+  p "o1: #{game.won?(0)}"
+end
 
-row10.draw_grid()
-puts "Enter the position: "
-pos = gets.chomp.to_i
-
-p "you entered #{pos}"
-row10.add_mark('X', pos)
-row10.draw_grid()
-
-# p grid.valid_pos?( pos )
-# p grid.valid_pos?( 2 )
-# p grid.valid_pos?( 9 )
+=end
