@@ -35,9 +35,21 @@
 #NOTE: index of arr = pos - 1
 require 'pry-byebug'
 
-LINES = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+
+
+#*******************************************
+# CONSTANTS
+#*******************************************
+
+LINES = [[1,2,3], [4,5,6], [7,8,9], 
+         [1,4,7], [2,5,8], [3,6,9], 
+         [1,5,9], [3,5,7]]
 VALID_X = ['X', 'x', '*']
 VALID_O = ['O', 'o', '0']
+
+#*******************************************
+# CLASS DEFINITIONS
+#*******************************************
 class Game
   attr_reader :arr
 
@@ -103,6 +115,9 @@ class Player
 
 end
 
+#*******************************************
+# main()
+#*******************************************
 
 vanilla = Game.new([1,2,3,4,5,6,7,8,9])
 row1x   = Game.new(['X','X','X',4,5,6,7,8,9])
@@ -137,9 +152,6 @@ puts "The computer is #{computer.sign}"
   vanilla.add_mark(player, pos)
   vanilla.draw_grid()
 }
-
-
-#handle when computer chooses invalid position
 
 =begin
 
