@@ -29,6 +29,7 @@
 =end
 
 #NOTE: index of arr = pos - 1
+require 'pry-byebug'
 
 LINES = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
 
@@ -62,6 +63,14 @@ class Game
       end
     end 
 
+    def add_mark(sign, pos)
+      if valid_pos?(pos)
+        @arr[pos-1] = sign
+      else
+        puts "Position choice invalid"
+      end
+    end
+
 end
 
 # tests
@@ -78,17 +87,21 @@ dig20   = Game.new([1,2,0,4,0,6,0,8,9])
 
 games = [vanilla, row1x, row2x, row3x, row10, row20, row30, col10, dig10, dig20]
 
-games.each do |game|
-  puts "New game #{game}"
-  game.draw_grid()
-  p "X1: #{game.won?('X')}"
-  p "o1: #{game.won?(0)}"
-end
+# games.each do |game|
+#   puts "New game #{game}"
+#   game.draw_grid()
+#   # binding.pry
+#   p "X1: #{game.won?('X')}"
+#   p "o1: #{game.won?(0)}"
+# end
 
-# puts "Enter the position: "
-# pos = gets.chomp.to_i
+row10.draw_grid()
+puts "Enter the position: "
+pos = gets.chomp.to_i
 
-# p "you entered #{pos}"
+p "you entered #{pos}"
+row10.add_mark('X', pos)
+row10.draw_grid()
 
 # p grid.valid_pos?( pos )
 # p grid.valid_pos?( 2 )
