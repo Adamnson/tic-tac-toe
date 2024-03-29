@@ -84,35 +84,20 @@ class Game
       if valid_pos?(pos)
         @arr[pos-1] = player.sign
       else
-        player.is_computer ? self.add_mark(player, player.choose_pos()) : (puts "Position choice invalid")
+        player.is_computer ? 
+         self.add_mark(player, player.choose_pos()) :  # not working
+         (puts "Position choice invalid")
       end
     end
 
 end
-
+#*******************************************
 class Player
   attr_accessor :sign, :is_computer
 
-    def initialize()
-      is_computer = false
+    def initialize(sign)
+      @sign = sign
     end
-
-  # private
-    def choose_pos()
-      1+rand(8)
-    end
-
-    def self.sign_assignment(sign, player1, player2)
-      if VALID_X.any?(sign)
-        player1.sign = sign
-        player2.sign = VALID_O[rand(2)]
-      else 
-        puts "Invalid choice" unless sign == 0
-        player1.sign = 0
-        player2.sign = VALID_X[rand(2)]
-      end
-    end
-
 end
 
 #*******************************************
@@ -130,28 +115,9 @@ col10   = Game.new([0,2,3,0,5,6,0,8,9])
 dig10   = Game.new([0,2,3,4,0,6,7,8,0])
 dig20   = Game.new([1,2,0,4,0,6,0,8,9])
 
-player = Player.new
-computer = Player.new
+player1 = Player.new("x")
+player2 = Player.new(0)
 computer.is_computer = true
-
-print " X or 0 ?:  "
-sign = gets.chomp
-Player.sign_assignment(sign, player, computer)
-puts "The player is #{player.sign}"
-puts "The computer is #{computer.sign}"
-
-3.times {
-  vanilla.add_mark(computer, computer.choose_pos())
-  vanilla.draw_grid()
-
-  # row10.draw_grid()
-  puts "Enter the position: "
-  pos = gets.chomp.to_i
-
-  # p "you entered #{pos}"
-  vanilla.add_mark(player, pos)
-  vanilla.draw_grid()
-}
 
 =begin
 
