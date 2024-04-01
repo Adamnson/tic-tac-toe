@@ -18,18 +18,6 @@
     -- add_mark
     -- won?
 
-  make a player class
-   - player gets to choose between "x" and 0
-     -- if player chooses x, display vanilla grid, ask for position
-        then computer makes a choice and passes back to player
-        repeat until winner emerges
-     -- if player chooses 0, computer makes a choice, display grid, 
-        ask for position
-        repeat until winner emerges
-   - after the game is over, ask if player wants to play again
-     -- yes: repeat
-     --  no: thank you for playing    
-
 =end
 
 #NOTE: index of arr = pos - 1
@@ -44,8 +32,7 @@ require 'pry-byebug'
 LINES = [[1,2,3], [4,5,6], [7,8,9], 
          [1,4,7], [2,5,8], [3,6,9], 
          [1,5,9], [3,5,7]]
-VALID_X = ['X', 'x', '*']
-VALID_O = ['O', 'o', '0']
+
 
 #*******************************************
 # CLASS DEFINITIONS
@@ -113,8 +100,21 @@ col10   = Game.new([0,2,3,0,5,6,0,8,9])
 dig10   = Game.new([0,2,3,4,0,6,7,8,0])
 dig20   = Game.new([1,2,0,4,0,6,0,8,9])
 
-player1 = Player.new("x")
+board = vanilla
+
+player1 = Player.new("X")
 player2 = Player.new(0)
+
+board.draw_grid()
+puts "Player 1, select your position: "
+pos = gets.chomp.to_i
+board.add_mark(player1, pos)
+board.draw_grid()
+puts "Player 2, your turn: "
+pos = gets.chomp.to_i
+board.add_mark(player2, pos)
+board.draw_grid()
+
 
 =begin
 
