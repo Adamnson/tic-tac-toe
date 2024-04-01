@@ -1,29 +1,5 @@
-=begin
-  how it should look:
-  - a grid is displayed and the user is prompted to choose 
-    a position to mark
-  - check if marking the position is valid 
-     -- yes: mark the position, check if player won
-        --- yes: display grid, congratulations
-        ---  no: computer moves, check if computer won
-            ---- yes: better luck next time
-            ----  no: display grid, ask user for input
-     --  no: ask user to make a different choice
-
-  make a game class
-   - each new grid would be a new instance of the game class
-   - the game class will have the following methods:
-    -- draw_grid
-    -- valid_pos?
-    -- add_mark
-    -- won?
-
-=end
-
 #NOTE: index of arr = pos - 1
 require 'pry-byebug'
-
-
 
 #*******************************************
 # CONSTANTS
@@ -32,7 +8,6 @@ require 'pry-byebug'
 LINES = [[1,2,3], [4,5,6], [7,8,9], 
          [1,4,7], [2,5,8], [3,6,9], 
          [1,5,9], [3,5,7]]
-
 
 #*******************************************
 # CLASS DEFINITIONS
@@ -71,9 +46,10 @@ class Game
          puts "Position choice invalid"
       end
     end
-
 end
+
 #*******************************************
+
 class Player
   attr_accessor :sign, :valid_pos
 
@@ -140,8 +116,9 @@ until player1.won?(board) or player2.won?(board) do
   player2.reset_pos()
 end
 
-
-
+#*******************************************
+# debugging and testing
+#*******************************************
 
 =begin
 
